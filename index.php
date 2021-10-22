@@ -9,6 +9,7 @@ use peps\core\Autoload;
 use peps\core\Cfg;
 use peps\core\DBAL;
 use peps\core\Router;
+use peps\core\SessionDB;
 
 // ************************************
 //* Contrôleur frontal de l'application.
@@ -20,7 +21,7 @@ Autoload::init();
 //* Initialiser la configuration (à faire en DEUXIEME).
 CfgApp::HOSTS[filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING)]::init();
 
-//* Initialiser la connexion Db (à faire AVANT d'initialiser SessionDB).
+//* Initialiser la connexion Db. (à faire AVANT d'initialiser SessionDB)
 DBAL::init(
     Cfg::get('dbDriver'),
     Cfg::get('dbHost'),
@@ -31,8 +32,13 @@ DBAL::init(
     Cfg::get('dbCharset')
 );
 
+//* Initialiser la gestion des sessions. (à faire APRÈS l'initialiser de la connexion DB)
+SessionDB::init(
+    Cfg::get('sessionTimeout'),
+    Cfg::get('sessionMode'),
+    Cfg::get('cookieSameSite')
+);
 
-// TODO : ici les initialisations.
 
 //* Router la requête du client (à faire EN DERNIER).
 Router::route();
