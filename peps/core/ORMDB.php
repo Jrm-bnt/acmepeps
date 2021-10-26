@@ -173,7 +173,6 @@ class ORMDB  implements ORM
      */
     public static function findOneBy(array $filters = []): ?ORM
     {
-        //todo
         return self::findAllBy($filters, [], '1')[0] ?? null;
     }
 
