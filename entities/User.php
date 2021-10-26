@@ -6,8 +6,7 @@ namespace entities;
 
 use peps\core\ORMDB;
 use peps\core\UserLoggable;
-
-
+use peps\core\Validator;
 
 /**
  * Entité User.
@@ -17,14 +16,13 @@ use peps\core\UserLoggable;
  */
 class User extends ORMDB implements UserLoggable
 {
-
     /**
      * PK.
      */
     public ?int $idUser = null;
 
     /**
-     * Identifiant de connexion
+     * Identifiant de connexion.
      */
     public ?string $log = null;
 
@@ -36,12 +34,12 @@ class User extends ORMDB implements UserLoggable
     public ?string $pwd = null;
 
     /**
-     * Nom
+     * Nom.
      */
     public ?string $lastName = null;
 
     /**
-     * Prénom
+     * Prénom.
      */
     public ?string $firstName = null;
 
@@ -52,7 +50,7 @@ class User extends ORMDB implements UserLoggable
     protected static ?self $userSession = null;
 
     /**
-     * construteur
+     * Constructeur.
      */
     public function __construct(int $idUser = null)
     {
@@ -64,17 +62,16 @@ class User extends ORMDB implements UserLoggable
      */
     public function login(): bool
     {
-        //* Si log ou pwd non renseignées, retourner false.
+        // Si log ou pwd non renseignées, retourner false.
         if (!$this->log || !$this->pwd)
             return false;
-
-        //* Si aucun utilisateur correspondant au login, retourner false.
+        // Si aucun utilisateur correspondant au login, retourner false.
         if (!$user = self::findOneBy(['log' => $this->log]))
             return false;
-        //* Si mot de passe incorrect, retourner false.
+        // Si mot de passe incorrect, retourner false.
         if (!password_verify($this->pwd, $user->pwd))
             return false;
-        //* Inscrire l'utilisateur dans la session et retourner true.
+        // Inscrire l'utilisateur dans la session et retourner true.
         $_SESSION['idUser'] = $user->idUser;
         return true;
     }
@@ -82,19 +79,16 @@ class User extends ORMDB implements UserLoggable
     /**
      * {@inheritDoc}
      */
-    public static function getUserSession(): ?User
+    public static function getUserSession(): ?self
     {
-        //* Si pas en cache, créer et hydrater l'utilisateur en session.
+        // Si pas en cache, créer et hydrater l'utilisateur en session.
         if (!self::$userSession) {
-
-            //* créer une instance.
+            // Créer une instance.
             $user = new self($_SESSION['idUser'] ?? null);
-
-            //* Si hydratation réussie, stocker l'instance dans le cache.
+            // Si $user non null et hydratation réussie, stocker l'instance dans le cache.
             self::$userSession = $user && $user->hydrate() ? $user : null;
-
-            //* Retourner l'utilisateur en session
-            return self::$userSession;
         }
+        // Retourner l'utilisateur en session.
+        return self::$userSession;
     }
 }

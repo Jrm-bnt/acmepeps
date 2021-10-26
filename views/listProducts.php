@@ -21,37 +21,35 @@ use peps\core\Cfg;
 </head>
 
 <body>
-    <header></header>
+    <?php require 'views/inc/header.php' ?>
     <main>
         <?php
         foreach ($categories as $category) {
         ?>
-        <div class="category">
-            <a href="/product/create/<?= $category->idCategory ?>">
-                <img src="/assets/img/ico_create.svg" class="ico">
+            <div class="category">
+                <a href="/product/create/<?= $category->idCategory ?>">
+                    <img src="/assets/img/ico_create.svg" class="ico">
 
-            </a>
-            <?= $category->name ?>
-        </div>
+                </a>
+                <?= $category->name ?>
+            </div>
 
-        <?php
+            <?php
             foreach ($category->products as $product) {
                 //* Ajouter dynamiquement la propriété idImg
                 $product->idImg = file_exists("assets/img/product_{$product->idProduct}_small.jpg") ? $product->idProduct : 0;
             ?>
 
-        <div class="blockProduct">
-            <a href="/product/show/<?= $product->idProduct ?>">
-                <img class="thunbnail" src="/assets/img/product_<?= $product->idImg ?>_small.jpg" alt="chaussure" />
-                <div class="name"><?= $product->name ?></div>
-            </a>
-            <a href="/product/update/<?= $product->idProduct ?>" class="ico update">
-                <img src="/assets/img/ico_update.svg"></a>
-            <img src="/assets/img/ico_delete.svg" alt="delete" class="ico delete"
-                onclick="deleteAll(<?= $product->idProduct ?>)">
-            <img src="/assets/img/ico_deleteImg.svg" alt="delete" class="ico deleteImg"
-                onclick="deleteImg(<?= $product->idProduct ?>)">
-        </div>
+                <div class="blockProduct">
+                    <a href="/product/show/<?= $product->idProduct ?>">
+                        <img class="thunbnail" src="/assets/img/product_<?= $product->idImg ?>_small.jpg" alt="chaussure" />
+                        <div class="name"><?= $product->name ?></div>
+                    </a>
+                    <a href="/product/update/<?= $product->idProduct ?>" class="ico update">
+                        <img src="/assets/img/ico_update.svg"></a>
+                    <img src="/assets/img/ico_delete.svg" alt="delete" class="ico delete" onclick="deleteAll(<?= $product->idProduct ?>)">
+                    <img src="/assets/img/ico_deleteImg.svg" alt="delete" class="ico deleteImg" onclick="deleteImg(<?= $product->idProduct ?>)">
+                </div>
         <?php
             }
         }

@@ -9,6 +9,7 @@ use peps\core\Cfg;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+<?php require 'views/inc/header.php' ?>
 
 <head>
     <meta charset="UTF-8">

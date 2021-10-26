@@ -32,10 +32,10 @@ final class UserController
      * 
      * GET user/sigin
      */
-    public static function sigin(): void
+    public static function signin(): void
     {
         //*Rendre la vue
-        Router::render('sigin.php', ['log' => null]);
+        Router::render('signin.php', ['log' => null]);
     }
 
     /**
@@ -61,7 +61,7 @@ final class UserController
 
         //* Sinon, afficher de nouveau le formulaire avec le message d'erreur.
         $errors[] = self::ERR_LOGIN;
-        Router::render('sigin.php', ['log' => $user->log, 'errors' => $errors]);
+        Router::render('signin.php', ['log' => $user->log, 'errors' => $errors]);
     }
 
 

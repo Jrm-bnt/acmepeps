@@ -30,10 +30,5 @@ final class TestController
      */
     public static function test(): void
     {
-        $user = new User();
-        $user->log = 'tom';
-        $user->pwd = 'tom';
-        var_dump($user->login());
-        var_dump(User::getUserSession());
     }
 }

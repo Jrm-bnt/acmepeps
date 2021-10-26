@@ -17,7 +17,7 @@ use peps\core\Cfg;
 </head>
 
 <body>
-    <header></header>
+    <?php require 'views/inc/header.php' ?>
 
     <main>
         <div class="category">
@@ -34,7 +34,7 @@ use peps\core\Cfg;
                         $selected = $category->idCategory === $product->idCategory ? 'selected="selected"' : '';
 
                     ?>
-                    <option value="<?= $category->idCategory ?>" <?= $selected ?>> <?= $category->name ?></option>
+                        <option value="<?= $category->idCategory ?>" <?= $selected ?>> <?= $category->name ?></option>
                     <?php
                     }
                     ?>
@@ -53,9 +53,7 @@ use peps\core\Cfg;
             </div>
             <div class="item">
                 <label>Prix</label>
-                <input type="number" name="price"
-                    value="<?= $product->price ? Cfg::get('NF_INPUT_2DEC')->format($product->price) : null ?>"
-                    min="0.01" max="9999.99" step="0.01" size="7" maxlength="7" required="required" />
+                <input type="number" name="price" value="<?= $product->price ? Cfg::get('NF_INPUT_2DEC')->format($product->price) : null ?>" min="0.01" max="9999.99" step="0.01" size="7" maxlength="7" required="required" />
             </div>
             <div class="item">
                 <label></label>
