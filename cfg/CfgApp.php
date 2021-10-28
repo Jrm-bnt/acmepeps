@@ -22,7 +22,8 @@ class CfgApp extends Cfg
 	 * @var string[]
 	 */
 	public const HOSTS = [
-		'acmepeps' => CfgLocal::class
+		'acmepeps' => CfgLocal::class,
+		'http://acmepeps.alwaysdata.net' => CfgAlwaysdata::class
 	];
 
 	/**
