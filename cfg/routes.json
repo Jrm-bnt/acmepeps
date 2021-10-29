@@ -66,5 +66,18 @@
 		"verb": "GET",
 		"uri": "/test",
 		"method": "TestController.test"
+	},
+	{
+		"verb": "GET",
+		"uri": "/test/autocomplete/(.*)",
+		"method": "TestController.autocomplete",
+		"params": [
+			"value"
+		]
+	},
+	{
+		"verb": "GET",
+		"uri": "/test/email",
+		"method": "TestController.email"
 	}
 ]

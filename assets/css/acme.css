@@ -233,3 +233,7 @@ form label {
 	margin: 0 0 0 10px;
 	color: red;
 }
+#autocomplete_results {
+
+	border: 1px black solid;
+}
