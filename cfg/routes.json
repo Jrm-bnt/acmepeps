@@ -34,6 +34,29 @@
 	},
 	{
 		"verb": "GET",
+		"uri": "/user/forgottenPwd",
+		"method": "UserController.forgottenPwd"
+	},
+	{
+		"verb": "POST",
+		"uri": "/user/newPwd",
+		"method": "UserController.newPwd"
+	},
+	{
+		"verb": "GET",
+		"uri": "/user/setPwd/([a-f0-9]+)",
+		"method": "UserController.setPwd",
+		"params": [
+			"hash"
+		]
+	},
+	{
+		"verb": "POST",
+		"uri": "/user/savePwd",
+		"method": "UserController.savePwd"
+	},
+	{
+		"verb": "GET",
 		"uri": "/product/create/([1-9][0-9]*)",
 		"method": "ProductController.create",
 		"params": [

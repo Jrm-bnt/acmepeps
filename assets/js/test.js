@@ -37,12 +37,6 @@ function test() {
 }
 
 function email() {
-	let test;
 	url = `/test/email`;
 	fetch(url)
-		.then(response => response.json())
-		.then(test)
-	console.log(test);
-
-
 }

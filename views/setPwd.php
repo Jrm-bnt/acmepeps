@@ -9,6 +9,7 @@ use peps\core\Cfg;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+<?php require 'views/inc/header.php' ?>
 
 <head>
     <meta charset="UTF-8">
@@ -22,28 +23,20 @@ use peps\core\Cfg;
 <body>
     <main>
         <div class="category">
-            <a href="/">Accueil</a> &gt; Connexion
+            <a href="/">Accueil</a> &gt; Nouveau mot de passe oublié.
         </div>
         <div class="error"><?= implode('<br/>', $errors ?? [])  ?></div>
-        <form name="form1" action="/user/login" method="POST">
-            <div class="item">
-                <label>Identifiant</label>
-                <input name="log" value="<?= $log ?>" size="10" maxlength="10" required="required" />
-            </div>
+        <form name="form1" action="/user/savePwd" method="POST">
+            <input type="hidden" name="hash" value="<?= $hash ?>" />
             <div class="item">
                 <label>Mot de passe</label>
-                <input type="password" name="pwd" size="10" maxlength="10" required="required" />
-
+                <input type="password" name="pwd" size="15" maxlength="20" required="required" />
             </div>
             <div class="item">
                 <label></label>
-                <input type="submit" value="Connexion" />
-                <div class="item">
-                    <label></label>
-                    <a href="/user/forgottenPwd">Mot de passe oublié</a>
-                </div>
+                <input type="submit" value="Envoyer" />
+            </div>
         </form>
-
     </main>
 </body>
 <footer></footer>

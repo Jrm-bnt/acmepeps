@@ -44,10 +44,27 @@ class User extends ORMDB implements UserLoggable
     public ?string $firstName = null;
 
     /**
+     * Email.
+     */
+    public ?string $email = null;
+
+    /**
+     * Hash pour réinitialisation du mote de passe
+     */
+    public ?string $pwdHash = null;
+
+    /**
+     * Timeout pour réinitialisation du mote de passe
+     */
+    public ?string $pwdTimeout = null;
+
+    /**
      * Instance de l'utilisateur en session.
      * En cache pour lazy loading.
      */
     protected static ?self $userSession = null;
+
+
 
     /**
      * Constructeur.
