@@ -65,4 +65,17 @@ final class TestController
         //* envoyer le tableau encodé en JSON
         Router::json(json_encode($products));
     }
+
+
+    public static function select(): void
+    {
+        //* Récuperer toutes les catégories.
+        $categories = Category::findAllBy([], ['name' => 'ASC']);
+        //* Pour chaque catégorie, déclencher le lazy loading.
+        foreach ($categories as $category)
+            $category->products;
+        //* Envoyer au client en JSON
+        router::json(json_encode($categories));
+        //Router::render('testSelect.php');
+    }
 }

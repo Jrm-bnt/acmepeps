@@ -102,5 +102,10 @@
 		"verb": "GET",
 		"uri": "/test/email",
 		"method": "TestController.email"
+	},
+	{
+		"verb": "GET",
+		"uri": "/test/select",
+		"method": "TestController.select"
 	}
 ]

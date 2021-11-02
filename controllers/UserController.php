@@ -93,7 +93,7 @@ final class UserController
 
 
     /**
-     * Génère et envoie par email un lien de destiné à saisir un nouveau mot de passe
+     * Génère et envoie par email un lien destiné à saisir un nouveau mot de passe
      *
      * GET /user/newPwd/{hash}
      */

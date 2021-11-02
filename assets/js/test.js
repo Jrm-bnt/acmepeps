@@ -38,5 +38,9 @@ function test() {
 
 function email() {
 	url = `/test/email`;
-	fetch(url)
+	fetch(url);
+}
+
+function selectCategory() {
+	console.log(categories);
 }

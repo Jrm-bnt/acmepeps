@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace entities;
 
 use entities\Product;
+use JsonSerializable;
 use peps\core\ORMDB;
 use peps\core\DBAL;
 use peps\core\Validator;
@@ -17,7 +18,7 @@ use peps\core\Validator;
  * @see DBAL
  * @see ORMDB
  */
-class Category extends ORMDB implements Validator
+class Category extends ORMDB implements Validator, JsonSerializable
 {
 
 
@@ -59,5 +60,23 @@ class Category extends ORMDB implements Validator
     public function validate(?array &$errors = null): bool
     {
         return true;
+    }
+
+    /**
+     * Appelé automatiqument
+     *
+     * @return void
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'idProduct' => $this->idProduct,
+            'idCategory' => $this->idCategory,
+            'name' => $this->name,
+            'ref' => $this->ref,
+            'price' => $this->price,
+            'category' => $this->category
+
+        ];
     }
 }

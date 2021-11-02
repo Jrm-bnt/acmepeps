@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace entities;
 
 use entities\Category;
+use JsonSerializable;
 use peps\core\ORMDB;
 use peps\core\DBAL;
 use peps\core\Validator;
@@ -17,7 +18,7 @@ use peps\core\Validator;
  * @see DBAL
  * @see ORMDB
  */
-class Product extends ORMDB implements Validator
+class Product extends ORMDB implements Validator, JsonSerializable
 {
 
     //* Messages d'erreur.
@@ -143,5 +144,14 @@ class Product extends ORMDB implements Validator
         $product = self::findOneBy(['ref' => $this->ref]);
         //* Ne pas compter celui qui aurait le même idProduct.
         return (bool) $product && $this->idProduct != $product->idProduct;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'idCategory' => $this->category,
+            'name' => $this->name,
+            'product' => $this->product,
+        ];
     }
 }
