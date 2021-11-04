@@ -50,33 +50,16 @@ class Category extends ORMDB implements Validator, JsonSerializable
      * Retourne un tableau des categories triés pas nom de cette catégorie.
      * Lazy loading
      */
-    protected function getProducts(): array
+    protected function getProducts(): array|null
     {
         if (empty($this->products))
             $this->products = Product::findAllBy(['idCategory' => $this->idCategory], ['name' => 'ASC']);
         return $this->products;
     }
 
+
     public function validate(?array &$errors = null): bool
     {
         return true;
-    }
-
-    /**
-     * Appelé automatiqument
-     *
-     * @return void
-     */
-    public function jsonSerialize()
-    {
-        return [
-            'idProduct' => $this->idProduct,
-            'idCategory' => $this->idCategory,
-            'name' => $this->name,
-            'ref' => $this->ref,
-            'price' => $this->price,
-            'category' => $this->category
-
-        ];
     }
 }

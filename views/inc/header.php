@@ -17,11 +17,11 @@ use entities\User;
         ?>
         <?= User::getUserSession()->lastName ?> <?= User::getUserSession()->firstName ?>
         &nbsp;&nbsp;&nbsp;
-        [ <a href="/user/logout">Déconnexion</a> ]
+        [ <a href="/user/logout">Déconnexion</a> ]&nbsp;&nbsp;&nbsp;[ <a href="/select">Select</a> ]
         <?php
         } else {
         ?>
-        [ <a href="/user/signin">Connexion</a> ]
+        [ <a href="/user/signin">Connexion</a> ]&nbsp;&nbsp;&nbsp;[ <a href="/select">Select</a> ]
         <?php
         }
         ?>

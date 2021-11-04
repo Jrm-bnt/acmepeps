@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace entities;
 
+use peps\core\DBAL;
 use peps\core\ORMDB;
 use peps\core\UserLoggable;
 use peps\core\Validator;
@@ -14,8 +15,17 @@ use peps\core\Validator;
  * @see ORMDB
  * @see UserLoggable
  */
-class User extends ORMDB implements UserLoggable
+class User extends ORMDB implements UserLoggable, Validator
 {
+    //*Message d'erreur
+
+    protected const ERR_INVALID_LOG = "Identifiant invalide";
+    protected const ERR_INVALID_LASTNAME = "Nom invalide";
+    protected const ERR_INVALID_FIRSTNAME = "Prénom invalide";
+    protected const ERR_INVALID_EMAIL = "Email invalide";
+    protected const ERR_INVALID_PWD = "Mot de passe invalide";
+
+
     /**
      * PK.
      */
@@ -107,5 +117,48 @@ class User extends ORMDB implements UserLoggable
         }
         // Retourner l'utilisateur en session.
         return self::$userSession;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     */
+    public function validate(?array &$errors = []): bool
+    {
+        //* Flag
+        $valid = true;
+
+
+        //* Vérifier l'identifiant' (obligatoire, unique et max 10 caractères).
+        if (!$this->log || mb_strlen($this->log) > 10 || User::findOneBy(['log' => $this->log])) {
+            $valid = false;
+            $errors[] = self::ERR_INVALID_LOG;
+        }
+
+        //* Vérifier le nom' (obligatoire et max 30 caractères).
+        if (!$this->lastName || mb_strlen($this->lastName) > 30) {
+            $valid = false;
+            $errors[] = self::ERR_INVALID_LASTNAME;
+        }
+        //* Vérifier le prénom' (obligatoire et max 20 caractères).
+        if (!$this->firstName || mb_strlen($this->firstName) > 30) {
+            $valid = false;
+            $errors[] = self::ERR_INVALID_FIRSTNAME;
+        }
+        //* Vérifier l'email'' (obligatoire,unique, véritable email et max 50 caractères).
+        if (!$this->email || mb_strlen($this->email) > 50 || User::findOneBy(['email' => $this->email])) {
+            $valid = false;
+            $errors[] = self::ERR_INVALID_EMAIL;
+        }
+        //* Vérifier le mot de passe (obligatoire et max 10 caractères).
+        if (!$this->pwd || mb_strlen($this->pwd) > 50) {
+            $valid = false;
+            $errors[] = self::ERR_INVALID_PWD;
+        }
+
+
+
+
+        return $valid;
     }
 }

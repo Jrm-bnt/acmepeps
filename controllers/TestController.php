@@ -74,8 +74,6 @@ final class TestController
         //* Pour chaque catégorie, déclencher le lazy loading.
         foreach ($categories as $category)
             $category->products;
-        //* Envoyer au client en JSON
-        router::json(json_encode($categories));
-        //Router::render('testSelect.php');
+        Router::render('select.php', ['categories' => $categories]);
     }
 }

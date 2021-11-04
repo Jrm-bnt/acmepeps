@@ -20,7 +20,7 @@ use peps\core\Cfg;
 <header></header>
 
 <body>
-    <main>
+    <main id="main">
         <div class="category">
             <a href="/">Accueil</a> &gt; Connexion
         </div>
@@ -46,6 +46,6 @@ use peps\core\Cfg;
 
     </main>
 </body>
-<footer></footer>
+
 
 </html>

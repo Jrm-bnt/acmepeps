@@ -41,6 +41,42 @@ final class UserController
     }
 
     /**
+     * Affiche le formulaire d'inscription.
+     * 
+     * GET user/sigup
+     */
+    public static function signup(): void
+    {
+        //*Rendre la vue
+        Router::render('signup.php', ['user' => new User()]);
+    }
+
+    /**
+     * Inscrit l'utilisateur si possible puis redirige.
+     * 
+     * POST user/save
+     */
+    public static function save(): void
+    {
+        //* Prévoir le tableau des messages d'erreur.
+        $errors = [];
+
+        //* Instancier un utilisateur.
+        $user = new User();
+
+        //* Récuperer les données POST.
+        $user->log = filter_input(INPUT_POST, 'log', FILTER_SANITIZE_STRING) ?: null;
+        $user->lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING) ?: null;
+        $user->firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING) ?: null;
+        $user->email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) ?: null;
+        $user->pwd = filter_input(INPUT_POST, 'pwd', FILTER_SANITIZE_STRING) ?: null;
+
+        //* Vérifier 
+
+    }
+
+
+    /**
      * Connecte l'utilisateur si possible puis redirige.
      * 
      * POST user/login

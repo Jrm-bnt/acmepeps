@@ -145,13 +145,4 @@ class Product extends ORMDB implements Validator, JsonSerializable
         //* Ne pas compter celui qui aurait le même idProduct.
         return (bool) $product && $this->idProduct != $product->idProduct;
     }
-
-    public function jsonSerialize()
-    {
-        return [
-            'idCategory' => $this->category,
-            'name' => $this->name,
-            'product' => $this->product,
-        ];
-    }
 }

@@ -23,6 +23,16 @@
 		"method": "UserController.signin"
 	},
 	{
+		"verb": "GET",
+		"uri": "/user/signup",
+		"method": "UserController.signup"
+	},
+	{
+		"verb": "GET",
+		"uri": "/user/save",
+		"method": "UserController.save"
+	},
+	{
 		"verb": "POST",
 		"uri": "/user/login",
 		"method": "UserController.login"
@@ -105,7 +115,7 @@
 	},
 	{
 		"verb": "GET",
-		"uri": "/test/select",
+		"uri": "/select",
 		"method": "TestController.select"
 	}
 ]
