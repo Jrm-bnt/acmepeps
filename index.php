@@ -5,6 +5,7 @@ declare(strict_types=1);
 require 'peps/core/Autoload.php';
 
 use cfg\CfgApp;
+use cfg\CfgLocal;
 use peps\core\Autoload;
 use peps\core\Cfg;
 use peps\core\DBAL;
@@ -19,7 +20,8 @@ use peps\core\SessionDB;
 Autoload::init();
 
 //* Initialiser la configuration (à faire en DEUXIEME).
-CfgApp::HOSTS[filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING)]::init();
+//* CfgApp::HOSTS[filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING)]::init();
+CfgLocal::init();
 
 //* Initialiser la connexion Db. (à faire AVANT d'initialiser SessionDB)
 DBAL::init(

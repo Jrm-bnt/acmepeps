@@ -18,11 +18,12 @@ final class autoload
 
     /** 
      * Initialise l'autoload.
-     * DOIT être appelée depuis le contrôleur frontal EN TOUT PREMIER. 
+     * DOIT être appelée depuis le contrôleur frontal EN TOUT PREMIER.
+     * @include pour bypasser les chemins virtuels de PHPUnit.phar. 
      */
     public static function init(): void
     {
         //* Inscrire la fonction d'autoload dans la pile d'autoload.
-        spl_autoload_register(fn ($className) => require  $className . '.php');
+        spl_autoload_register(fn ($className) => @include  $className . '.php');
     }
 }

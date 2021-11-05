@@ -55,7 +55,7 @@ class Cfg
         //* Locale du client.
         self::register('LOCALE', (function () {
             //* Récuperer les locales du client.
-            $locales = filter_input(INPUT_SERVER, 'HTTP_ACCEPT_LANGUAGE', FILTER_SANITIZE_STRING);
+            $locales = filter_input(INPUT_SERVER, 'HTTP_ACCEPT_LANGUAGE', FILTER_SANITIZE_STRING) ?? self::$constants['LOCALE_DEFAULT'];
             return Locale::acceptFromHttp($locales) ?: self::$constants['LOCALE_DEFAULT'];
         })());
 
