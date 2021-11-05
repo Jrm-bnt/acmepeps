@@ -53,18 +53,19 @@ use peps\core\Cfg;
             </div>
             <div class="item">
                 <label> Confirmation mdp</label>
-                <input type="password" name="pwd2" size="10" maxlength="10" required="required" />
+                <input type="password" name="pwd2" size="10" maxlength="10" required="required" oninput="checkPwd()" />
 
             </div>
             <div class="item">
                 <label></label>
-                <input type="submit" value="Inscription" />
+                <input type="submit" name="submit" value="inscription" disabled="disabled" />
                 <div class="item">
                     <label></label>
                 </div>
         </form>
 
     </main>
+    <script src="/assets/js/signup.js"></script>
 </body>
 
 

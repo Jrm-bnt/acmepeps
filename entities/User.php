@@ -44,6 +44,16 @@ class User extends ORMDB implements UserLoggable, Validator
     public ?string $pwd = null;
 
     /**
+     * Hash pour réinitialisation du mote de passe
+     */
+    public ?string $pwdHash = null;
+
+    /**
+     * Timeout pour réinitialisation du mote de passe
+     */
+    public ?string $pwdTimeout = null;
+
+    /**
      * Nom.
      */
     public ?string $lastName = null;
@@ -58,15 +68,7 @@ class User extends ORMDB implements UserLoggable, Validator
      */
     public ?string $email = null;
 
-    /**
-     * Hash pour réinitialisation du mote de passe
-     */
-    public ?string $pwdHash = null;
 
-    /**
-     * Timeout pour réinitialisation du mote de passe
-     */
-    public ?string $pwdTimeout = null;
 
     /**
      * Instance de l'utilisateur en session.
@@ -141,7 +143,7 @@ class User extends ORMDB implements UserLoggable, Validator
             $errors[] = self::ERR_INVALID_LASTNAME;
         }
         //* Vérifier le prénom' (obligatoire et max 20 caractères).
-        if (!$this->firstName || mb_strlen($this->firstName) > 30) {
+        if (!$this->firstName || mb_strlen($this->firstName) > 20) {
             $valid = false;
             $errors[] = self::ERR_INVALID_FIRSTNAME;
         }

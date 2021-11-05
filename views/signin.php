@@ -42,6 +42,11 @@ use peps\core\Cfg;
                     <label></label>
                     <a href="/user/forgottenPwd">Mot de passe oublié</a>
                 </div>
+                <div class="item">
+                    <label></label>
+                    <a href="/user/signup">Création de compte</a>
+                </div>
+
         </form>
 
     </main>

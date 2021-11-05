@@ -28,7 +28,7 @@
 		"method": "UserController.signup"
 	},
 	{
-		"verb": "GET",
+		"verb": "POST",
 		"uri": "/user/save",
 		"method": "UserController.save"
 	},

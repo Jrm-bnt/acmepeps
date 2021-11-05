@@ -67,13 +67,20 @@ final class UserController
         //* Récuperer les données POST.
         $user->log = filter_input(INPUT_POST, 'log', FILTER_SANITIZE_STRING) ?: null;
         $user->lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING) ?: null;
-        $user->firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING) ?: null;
+        $user->firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING) ?: null;
         $user->email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) ?: null;
         $user->pwd = filter_input(INPUT_POST, 'pwd', FILTER_SANITIZE_STRING) ?: null;
 
-        //* Vérifier 
-
+        //* Si donnée valides, chiffrer le mot de passe, persister et rediriger.
+        if ($user->validate($errors)) {
+            $user->pwd = password_hash($user->pwd, PASSWORD_DEFAULT);
+            $user->persist();
+            Router::redirect('/user/signin');
+        }
+        //* Sinon rendre à nouveau la vue du formulaire avec les messages d'erreur.
+        Router::render('signup.php', ['user' => $user, 'errors' => $errors]);
     }
+
 
 
     /**
